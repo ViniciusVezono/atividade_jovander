@@ -1,0 +1,19 @@
+# Imagem base // salvar o codigo da imagem
+FROM ubuntu:latest
+
+# Evita prompts durante instalação
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Atualiza pacotes e instala o Apache
+RUN apt-get update && \
+    apt-get install -y apache2 && \
+    apt-get clean
+
+# Copia uma página de exemplo (opcional)
+# COPY index.html /var/www/html/index.html
+
+# Expõe a porta 80
+EXPOSE 80
+
+# Comando para iniciar o Apache em foreground
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
